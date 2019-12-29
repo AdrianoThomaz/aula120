@@ -10,43 +10,43 @@ namespace Course
         static void Main(string[] args)
         {
 
-            Console.Write("Enter department's name: ");
+            Console.Write("Entre o nome do departamento: ");
             string deptName = Console.ReadLine();
-            Console.WriteLine("Enter worker data:");
-            Console.Write("Name: ");
+            Console.WriteLine("Inserir dados do trabalhador: ");
+            Console.Write("Nome: ");
             string name = Console.ReadLine();
-            Console.Write("Level: (Junior/MidLevel/Senior): ");
+            Console.Write("Level: (Junior/NivelMedio/Senior): ");
             WorkerLevel level = Enum.Parse<WorkerLevel>(Console.ReadLine());
-            Console.Write("Base salary: ");
+            Console.Write("Salário Base: ");
             double baseSalary = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
             Department dept = new Department(deptName);
             Worker worker = new Worker(name, level, baseSalary, dept);
 
-            Console.Write("How many contracts to this worker? ");
+            Console.Write("Quantos contratos para este trabalhador? ");
             int n = int.Parse(Console.ReadLine());
 
             for (int i = 1; i <= n; i++)
             {
-                Console.WriteLine($"Enter #{i} contract data:");
-                Console.Write("Date (DD/MM/YYYY): ");
+                Console.WriteLine($"Entre #{i} dados do contrato:");
+                Console.Write("Data (DD/MM/YYYY): ");
                 DateTime date = DateTime.Parse(Console.ReadLine());
-                Console.Write("Value per hour: ");
+                Console.Write("Valor por hora: ");
                 double valuePerHour = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-                Console.Write("Duration (hours): ");
+                Console.Write("Duração (horas): ");
                 int hours = int.Parse(Console.ReadLine());
                 HourContract contract = new HourContract(date, valuePerHour, hours);
                 worker.AddContract(contract);
             }
 
             Console.WriteLine();
-            Console.Write("Enter month and year to calculate income (MM/YYYY): ");
+            Console.Write("Digite o mês e o ano para calcular a renda (MM/YYYY): ");
             string monthAndYear = Console.ReadLine();
             int month = int.Parse(monthAndYear.Substring(0, 2));
             int year = int.Parse(monthAndYear.Substring(3));
-            Console.WriteLine("Name : " + worker.Name);
-            Console.WriteLine("Department: " + worker.Department.Name);
-            Console.WriteLine("Income for " + monthAndYear + ": " + worker.Income(year, month).ToString("F2", CultureInfo.InvariantCulture));
+            Console.WriteLine("Nome : " + worker.Name);
+            Console.WriteLine("Departmento: " + worker.Department.Name);
+            Console.WriteLine("Renda para " + monthAndYear + ": " + worker.Income(year, month).ToString("F2", CultureInfo.InvariantCulture));
             Console.ReadLine();
         }
     }
